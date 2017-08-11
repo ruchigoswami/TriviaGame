@@ -1,0 +1,62 @@
+body
+{
+  background-image: url("../images/game.png");
+  background-size: cover;
+  background-repeat: no-repeat;  
+  font-family:"Times New Roman", Georgia, Serif;
+	font-style: italic;
+	font-weight: bold;
+	width: 100%;
+  
+  
+}
+#question
+{
+	
+	
+	color:purple;
+	margin-left:70px ;
+	width: 100%;
+	margin-top: 20px;
+	font-size: 38px;
+   text-shadow: 1px 1px 4px black, 0 0 1px blue, 0 0 2px darkblue;	
+}
+
+.btn
+{
+	width: 60%;
+	padding: 10px;
+	font-size: 22px;
+	height: 50px;
+	margin-left: 70px;
+	margin-top: 60px;
+	
+}
+#option0,#option2{
+	margin-left:   70px;
+}
+#header
+{
+	text-align: center;
+}
+img
+{
+	width: 500px;
+	margin-left: 330px;
+}
+.quiz
+{
+	background-color: #000;
+ 	border:8px solid purple;
+ 	color: #fff;
+ 	border-style: dashed;
+	margin-left: 380px;
+	height: 420px;
+	margin-top: 30px;
+
+}
+#play
+{
+	margin-top: 100px;
+	margin-left: 100px;
+}
