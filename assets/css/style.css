@@ -1,8 +1,7 @@
 body
 {
-  background-image: url("../images/game.png");
-  background-size: cover;
-  background-repeat: no-repeat;  
+  
+  
   font-family:"Times New Roman", Georgia, Serif;
 	font-style: italic;
 	font-weight: bold;
@@ -10,30 +9,29 @@ body
   
   
 }
-#question
-{
-	
-	
-	color:purple;
-	margin-left:70px ;
+#question, .startbtn
+{		
+	color:blue;
+	text-align: center;
 	width: 100%;
 	margin-top: 20px;
 	font-size: 38px;
-   text-shadow: 1px 1px 4px black, 0 0 1px blue, 0 0 2px darkblue;	
+   text-shadow: 1px 1px 4px white, 0 0 1px blue, 0 0 2px darkblue;	
 }
 
 .btn
 {
 	width: 60%;
 	padding: 10px;
-	font-size: 22px;
-	height: 50px;
-	margin-left: 70px;
-	margin-top: 60px;
+	font-size: 32px;
+	height: 70px;
+	margin-left: 40px;
+	margin-top: 50px;
+
 	
 }
 #option0,#option2{
-	margin-left:   70px;
+	margin-left:   170px;
 }
 #header
 {
@@ -42,7 +40,7 @@ body
 img
 {
 	width: 500px;
-	margin-left: 330px;
+	
 }
 .quiz
 {
@@ -50,7 +48,7 @@ img
  	border:8px solid purple;
  	color: #fff;
  	border-style: dashed;
-	margin-left: 380px;
+	margin-left:0px;
 	height: 420px;
 	margin-top: 30px;
 
