@@ -179,9 +179,6 @@ $(".quiz").on("click", "a.btn-info",function(){
 	 	console.log("correctAnswers:"+correctAnswers);
 	 	//delay for 5 sec
 	 	//display next question
-	 	//check if more questions to show
-	 	//wait(4000);
-	 	//$("#answer").html('');
 	 	wait(function(){
 			$("#answer").html('');
 	 		timeUp();
