@@ -144,16 +144,19 @@ function timeUp(){
 	 		
 	 	}
 
+};
+
+var wait = function( callback, seconds){
+   return window.setTimeout( callback, seconds * 1000 );
 }
 
 $(".quiz").on("click", "div.btn_start_over,div.startbtn", function(){
 		startGame();
 });
-/*$(".startbtn").on("click",function(){
-
-});*/
 
 $(".quiz").on("click", "a.btn-info",function(){
+
+		clearInterval(intervalId);
 	 	var userSelectedAnswer = $(this).html();
 	 	console.log(userSelectedAnswer);
 		attemptAnswers++;
@@ -166,7 +169,7 @@ $(".quiz").on("click", "a.btn-info",function(){
 
 	 	}else{
 	 		//show currect ans and image
-	 		var html = 'your answer was wrong. Correct ans is';
+	 		var html = 'Your answer was wrong. Correct answer is :' +questions_arr[currentQIndex].answer;
 	 		$( "#answer" ).html(html);
 	 		//$("#answer").html(html);
 
@@ -179,7 +182,10 @@ $(".quiz").on("click", "a.btn-info",function(){
 	 	//check if more questions to show
 	 	//wait(4000);
 	 	//$("#answer").html('');
-	 	timeUp();
+	 	wait(function(){
+			$("#answer").html('');
+	 		timeUp();
+	 	},4);
 	 	
 	 		
     });
