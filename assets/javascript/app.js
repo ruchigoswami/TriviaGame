@@ -57,16 +57,19 @@ var correctAnswers;
 var timer;
 var intervalId;
 
+$(".quiz").on("click", "div.btn_start_over,div.startbtn", function(){
+		startGame();
+});
 
 function startGame(){
 
-currentQIndex=-1;
-attemptAnswers=0;
-correctAnswers=0;
-display(nextQuestion());
+	currentQIndex=-1;
+	attemptAnswers=0;
+	correctAnswers=0;
+	display(nextQuestion());
 }  
 
- 
+//Displays the provided Question 
 function display(qs_display) {
 
 	
@@ -94,33 +97,29 @@ function display(qs_display) {
       $("#option"+i).text(qs_display.options[i]);
 	}
 	run();
-	// body
-
-};
-function evaluateAnswer(userSelectedAnswer){
-	return questions_arr[currentQIndex].answer===userSelectedAnswer;
+	
 };
 
+//Returns Next Question 
 function nextQuestion(){
 	currentQIndex++;
 	return questions_arr[currentQIndex];
 };
 
- function run() {
+function run() {
  	timer = 30;
  	$("#timer").html("<h2> Time Remaining : " + timer + " Seconds</h2>")	
-      intervalId = setInterval(decrement, 1000);
- }
+    intervalId = setInterval(decrement, 1000);
+ };
 //  The decrement function.
  function decrement() {
-      //  Decrease number by one.
+     
       timer--;
-      //  Show the number in the #show-number tag.
       $("#timer").html("<h2> Time Remaining : " + timer + " Seconds</h2>");
       if (timer === 0) {
-        //  ...run the stop function.
+        //  clear interval.
         clearInterval(intervalId);
-        //  Alert the user that time is up.
+       
         var html=
         "<div class='answer'>"
         	 + "<div class='wrongAnswerText'> "
@@ -135,7 +134,12 @@ function nextQuestion(){
 	 	},4);
        
       }
-    }
+    };
+
+var wait = function( callback, seconds){
+   return window.setTimeout( callback, seconds * 1000 );
+};
+
  
  function timeUp(){
 	console.log("timeup:");
@@ -147,29 +151,19 @@ function nextQuestion(){
 	 			display(nextQuestion());	
 	 	}
 	 	else{
-	 		
+	 		//Show the Game result
 	 		 var html = "<div class='col-md-12' id='question'>" +'Correct Answer:'.concat(correctAnswers)+"</div>" 
 	 		 +"<div class='col-md-12' id='question'>" +' Incorrect Ans: '.concat(attemptAnswers - correctAnswers)+"</div>" 
 	 		 +"<div class='col-md-12' id='question'>" +' Un answered Question'.concat(questions_arr.length- attemptAnswers)+"</div>"
 	 		 +"<div class='col-md-12 btn_start_over' id='question'>Start Over</div>"; 
 
-
-	 					//' Incorrect Ans: ' + attemptAnswers - correctAnswers
-	 					//+ ' Un answered Question' + questions_arr.length- attemptAnswers ;
 	 		$(".quiz").html(html);
 	 		
 	 	}
 
 };
 
-var wait = function( callback, seconds){
-   return window.setTimeout( callback, seconds * 1000 );
-}
-
-$(".quiz").on("click", "div.btn_start_over,div.startbtn", function(){
-		startGame();
-});
-
+//Get called when user picks a answer
 $(".quiz").on("click", "a.btn-info",function(){
 
 		clearInterval(intervalId);
@@ -206,25 +200,17 @@ $(".quiz").on("click", "a.btn-info",function(){
 	 	console.log("currentQIndex:"+currentQIndex);
 	 	console.log("attemptAnswers:"+attemptAnswers);
 	 	console.log("correctAnswers:"+correctAnswers);
-	 	//delay for 5 sec
+	 	//delay for few sec
 	 	//display next question
 	 	wait(function(){
-			$("#answer").html('');
-	 		timeUp();
+			timeUp();
 	 	},4);
 	 	
 	 		
     });
-
-function wait(ms){
-   var start = new Date().getTime();
-   var end = start;
-   while(end < start + ms) {
-     end = new Date().getTime();
-  }
-}
-
-
-
+//Returns in the answer selected for the question is correct
+function evaluateAnswer(userSelectedAnswer){
+	return questions_arr[currentQIndex].answer===userSelectedAnswer;
+};
 
 });
