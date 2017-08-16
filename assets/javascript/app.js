@@ -176,7 +176,7 @@ $(".quiz").on("click", "a.btn-info",function(){
 	        	 + "<div class='correctAnswerText'> "
 	      		  	 + " Your answer is Correct: "+questions_arr[currentQIndex].answer
 	        	 +"</div>"
-	         	 + "<br><img src='./assets/images/"+questions_arr[currentQIndex].answer+".PNG' height='300' width='140'> </img>"
+	         	 + "<br><img src='./assets/images/"+questions_arr[currentQIndex].answer+".png' height='300' width='140'> </img>"
 	        +"</div>"
             
      		$(".quiz").html(html);
@@ -189,7 +189,7 @@ $(".quiz").on("click", "a.btn-info",function(){
 	        	 + "<div class='wrongAnswerText'> "
 	      		  	 + " Your answer is wrong.<br> Correct answer is : "+questions_arr[currentQIndex].answer
 	        	 +"</div>"
-	         	 + "<br><img src='./assets/images/"+questions_arr[currentQIndex].answer+".PNG' height='300' width='140'> </img>"
+	         	 + "<br><img src='./assets/images/"+questions_arr[currentQIndex].answer+".png' height='300' width='140'> </img>"
 	        +"</div>"
 
 			$(".quiz").html(html);
