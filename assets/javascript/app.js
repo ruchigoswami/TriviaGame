@@ -79,14 +79,14 @@ function display(qs_display) {
 			+ "	<div class='row' id='question_row'> "
 			+ "		<div class='col-md-12' id='question'></div> "
 			+ "	</div> "
-        	+ "<div class='row'> " 
-        	+ "  <div class='col-md-6' ><a href='#' id='option0' class='btn btn-info'>Info</a></div>"
-        	+ "   <div class='col-md-6' ><a href='#' id='option1' class='btn btn-info'>Info</a></div>"
-            + "</div> "
-        	+ "<div class='row'> " 
-        	+ "  <div class='col-md-6' ><a href='#' id='option2' class='btn btn-info'>Info</a></div>"
-        	+ "   <div class='col-md-6' ><a href='#' id='option3' class='btn btn-info'>Info</a></div>"
-            + "</div> ";
+        	        + "<div class='row'> " 
+        	        + "  <div class='col-md-6' ><a href='#' id='option0' class='btn btn-info'>Info</a></div>"
+        	        + "   <div class='col-md-6' ><a href='#' id='option1' class='btn btn-info'>Info</a></div>"
+                        + "</div> "
+        	        + "<div class='row'> " 
+        	        + "  <div class='col-md-6' ><a href='#' id='option2' class='btn btn-info'>Info</a></div>"
+        	        + "   <div class='col-md-6' ><a href='#' id='option3' class='btn btn-info'>Info</a></div>"
+                        + "</div> ";
 
 	$(".quiz").html(html);
 	
@@ -94,7 +94,7 @@ function display(qs_display) {
 	console.log(qs_display);
 	for(var i = 0; i<qs_display.options.length; i++)
 	{
-      $("#option"+i).text(qs_display.options[i]);
+        $("#option"+i).text(qs_display.options[i]);
 	}
 	run();
 	
@@ -123,17 +123,15 @@ function run() {
         var html=
         "<div class='answer'>"
         	 + "<div class='wrongAnswerText'> "
-      		  	 + " Time is out !!<br> Correct answer was: "+questions_arr[currentQIndex].answer
+      		    + " Time is out !!<br> Correct answer was: "+questions_arr[currentQIndex].answer
         	 +"</div>"
          	 + "<br><img src='./assets/images/"+questions_arr[currentQIndex].answer+".PNG' height='300' width='140'> </img>"
-        +"</div>"
-       
+                 +"</div>"
 		$(".quiz").html(html);
         wait(function(){
 			timeUp();
 	 	},4);
-       
-      }
+       }
     };
 
 var wait = function( callback, seconds){
