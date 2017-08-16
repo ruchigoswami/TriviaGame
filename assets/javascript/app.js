@@ -57,32 +57,21 @@ var correctAnswers;
 var timer;
 var intervalId;
 
- function run() {
- 	timer = 30;
- 	$("#timer").html("<h2>" + timer + "</h2>")	
-      intervalId = setInterval(decrement, 1000);
- }
-//  The decrement function.
-function decrement() {
-      //  Decrease number by one.
-      timer--;
-      //  Show the number in the #show-number tag.
-      $("#timer").html("<h2>" + timer + "</h2>");
-      if (timer === 0) {
-        //  ...run the stop function.
-        clearInterval(intervalId);
-        //  Alert the user that time is up.
-        timeUp();
-      }
-    }
 
 function startGame(){
 
 currentQIndex=-1;
 attemptAnswers=0;
 correctAnswers=0;
-var html =  " <div class='row' id='points_row'> "
-			+ " <div class='col-md-6' id='timer'>Points</div> "
+display(nextQuestion());
+}  
+
+ 
+function display(qs_display) {
+
+	
+	var html =" <div class='row' id='points_row'> "
+			+ " <div class='col-md-6' id='timer'></div> "
 			+ "</div> "
 			+ "	<div class='row' id='question_row'> "
 			+ "		<div class='col-md-12' id='question'></div> "
@@ -94,44 +83,71 @@ var html =  " <div class='row' id='points_row'> "
         	+ "<div class='row'> " 
         	+ "  <div class='col-md-6' ><a href='#' id='option2' class='btn btn-info'>Info</a></div>"
         	+ "   <div class='col-md-6' ><a href='#' id='option3' class='btn btn-info'>Info</a></div>"
-            + "</div> "
-            + "<div class='row' id='answer'></div>";
+            + "</div> ";
 
-$(".quiz").html(html);
-display(nextQuestion());
-
-}  
-//startGame();
- 
-function display(qs_display) {
-
-	run();
-	// body...
+	$(".quiz").html(html);
+	
 	$("#question").text(qs_display.question);
 	console.log(qs_display);
 	for(var i = 0; i<qs_display.options.length; i++)
 	{
       $("#option"+i).text(qs_display.options[i]);
 	}
+	run();
+	// body
 
 };
+function evaluateAnswer(userSelectedAnswer){
+	return questions_arr[currentQIndex].answer===userSelectedAnswer;
+};
 
+function nextQuestion(){
+	currentQIndex++;
+	return questions_arr[currentQIndex];
+};
 
-function timeUp(){
+ function run() {
+ 	timer = 30;
+ 	$("#timer").html("<h2> Time Remaining : " + timer + " Seconds</h2>")	
+      intervalId = setInterval(decrement, 1000);
+ }
+//  The decrement function.
+ function decrement() {
+      //  Decrease number by one.
+      timer--;
+      //  Show the number in the #show-number tag.
+      $("#timer").html("<h2> Time Remaining : " + timer + " Seconds</h2>");
+      if (timer === 0) {
+        //  ...run the stop function.
+        clearInterval(intervalId);
+        //  Alert the user that time is up.
+        var html=
+        "<div class='answer'>"
+        	 + "<div class='wrongAnswerText'> "
+      		  	 + " Time is out !!<br> Correct answer was: "+questions_arr[currentQIndex].answer
+        	 +"</div>"
+         	 + "<br><img src='./assets/images/"+questions_arr[currentQIndex].answer+".PNG' height='300' width='140'> </img>"
+        +"</div>"
+       
+		$(".quiz").html(html);
+        wait(function(){
+			timeUp();
+	 	},4);
+       
+      }
+    }
+ 
+ function timeUp(){
 	console.log("timeup:");
 	console.log("currentQIndex:"+currentQIndex);
 	console.log("attemptAnswers:"+attemptAnswers);
 	console.log("correctAnswers:"+correctAnswers);
 	//check if more questions to show
 	 	if(questions_arr.length-1>currentQIndex){
-	 		display(nextQuestion());	
+	 			display(nextQuestion());	
 	 	}
 	 	else{
-	 		//game over
-	 		/*var html = 'Correct Answer:'.concat(correctAnswers)
-	 		.concat(' Incorrect Ans: ').concat(attemptAnswers - correctAnswers)
-	 		.concat(' Un answered Question').concat(questions_arr.length- attemptAnswers);*/
-
+	 		
 	 		 var html = "<div class='col-md-12' id='question'>" +'Correct Answer:'.concat(correctAnswers)+"</div>" 
 	 		 +"<div class='col-md-12' id='question'>" +' Incorrect Ans: '.concat(attemptAnswers - correctAnswers)+"</div>" 
 	 		 +"<div class='col-md-12' id='question'>" +' Un answered Question'.concat(questions_arr.length- attemptAnswers)+"</div>"
@@ -162,17 +178,30 @@ $(".quiz").on("click", "a.btn-info",function(){
 		attemptAnswers++;
 	 	if(evaluateAnswer(userSelectedAnswer)){
 	 		correctAnswers++;
-	 		//display image 
-	 		var html = 'correct';
-	 		//$("#answer").html(html);
-	 		$( "#answer" ).html(html);
+	 		
+	 		var html=
+	        "<div class='answer'>"
+	        	 + "<div class='correctAnswerText'> "
+	      		  	 + " Your answer is Correct: "+questions_arr[currentQIndex].answer
+	        	 +"</div>"
+	         	 + "<br><img src='./assets/images/"+questions_arr[currentQIndex].answer+".PNG' height='300' width='140'> </img>"
+	        +"</div>"
+            
+     		$(".quiz").html(html);
+	 		
 
 	 	}else{
 	 		//show currect ans and image
-	 		var html = 'Your answer was wrong. Correct answer is :' +questions_arr[currentQIndex].answer;
-	 		$( "#answer" ).html(html);
-	 		//$("#answer").html(html);
+	 		var html=
+	        "<div class='answer'>"
+	        	 + "<div class='wrongAnswerText'> "
+	      		  	 + " Your answer is wrong.<br> Correct answer is : "+questions_arr[currentQIndex].answer
+	        	 +"</div>"
+	         	 + "<br><img src='./assets/images/"+questions_arr[currentQIndex].answer+".PNG' height='300' width='140'> </img>"
+	        +"</div>"
 
+			$(".quiz").html(html);
+	 		
 	 	}
 	 	console.log("currentQIndex:"+currentQIndex);
 	 	console.log("attemptAnswers:"+attemptAnswers);
@@ -195,14 +224,7 @@ function wait(ms){
   }
 }
 
-function evaluateAnswer(userSelectedAnswer){
-	return questions_arr[currentQIndex].answer===userSelectedAnswer;
-};
 
-function nextQuestion(){
-	currentQIndex++;
-	return questions_arr[currentQIndex];
-};
 
 
 });

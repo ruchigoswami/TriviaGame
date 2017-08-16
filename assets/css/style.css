@@ -9,7 +9,7 @@ body
   
   
 }
-#question, .startbtn
+#question, .startbtn 
 {		
 	color:blue;
 	text-align: center;
@@ -18,6 +18,11 @@ body
 	font-size: 38px;
    text-shadow: 1px 1px 4px white, 0 0 1px blue, 0 0 2px darkblue;	
 }
+.startbtn
+{		
+	line-height: 600px;
+}
+
 
 .btn
 {
@@ -49,8 +54,8 @@ img
  	color: #fff;
  	border-style: dashed;
 	margin-left:0px;
-	height: 420px;
-	margin-top: 30px;
+	height: 650px;
+	
 
 }
 #play
@@ -58,3 +63,35 @@ img
 	margin-top: 100px;
 	margin-left: 100px;
 }
+#timer{
+	text-align: center;
+    width: 100%;
+    margin-top: 40px;
+}
+#timer>h2{
+	color: purple;
+}
+.answer {
+    text-align: center;
+    margin-top: 100px;
+}
+.wrongAnswerText 
+{		
+	color:red;
+	text-align: center;
+	width: 100%;
+	margin-top: 20px;
+	font-size: 38px;
+   text-shadow: 1px 1px 4px white, 0 0 1px blue, 0 0 2px darkblue;	
+}
+
+.correctAnswerText 
+{		
+	color:green;
+	text-align: center;
+	width: 100%;
+	margin-top: 20px;
+	font-size: 38px;
+   text-shadow: 1px 1px 4px white, 0 0 1px blue, 0 0 2px darkblue;	
+}
+
