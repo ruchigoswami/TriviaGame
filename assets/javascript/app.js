@@ -125,7 +125,7 @@ function run() {
         	 + "<div class='wrongAnswerText'> "
       		    + " Time is out !!<br> Correct answer was: "+questions_arr[currentQIndex].answer
         	 +"</div>"
-         	 + "<br><img src='./assets/images/"+questions_arr[currentQIndex].answer+".PNG' height='300' width='140'> </img>"
+         	 + "<br><img src='./assets/images/"+questions_arr[currentQIndex].answer+".png' height='300' width='140'> </img>"
                  +"</div>"
 		$(".quiz").html(html);
         wait(function(){
